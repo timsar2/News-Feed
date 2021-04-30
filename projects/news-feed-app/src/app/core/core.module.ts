@@ -1,6 +1,6 @@
 /**
  * 
- * CoreModule just containe global singletons so the application start up time will be faster
+ * CoreModule just containe global singletons class or service providers so the application start up time will be faster
  *
  */
 import { NgModule } from '@angular/core';
