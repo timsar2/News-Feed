@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [{
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'news-feed'
+  },
+  {
+    path: 'news-feed',
+    loadChildren: () => import('./features/news-feed/news-feed.module').then(m => m.NewsFeedModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'news-feed'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
