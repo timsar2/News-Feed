@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "news-feed-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/news-feed-app",
+      "sourceRoot": "projects/news-feed-app/src",
+      "prefix": "viktor-task",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/news-feed-app",
+            "index": "projects/news-feed-app/src/index.html",
+            "main": "projects/news-feed-app/src/main.ts",
+            "polyfills": "projects/news-feed-app/src/polyfills.ts",
+            "tsConfig": "projects/news-feed-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/news-feed-app/src/favicon.ico",
+              "projects/news-feed-app/src/assets"
+            ],
+            "styles": [
+              "projects/news-feed-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/news-feed-app/src/environments/environment.ts",
+                  "with": "projects/news-feed-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "news-feed-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "news-feed-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "news-feed-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/news-feed-app/src/test.ts",
+            "polyfills": "projects/news-feed-app/src/polyfills.ts",
+            "tsConfig": "projects/news-feed-app/tsconfig.spec.json",
+            "karmaConfig": "projects/news-feed-app/karma.conf.js",
+            "assets": [
+              "projects/news-feed-app/src/favicon.ico",
+              "projects/news-feed-app/src/assets"
+            ],
+            "styles": [
+              "projects/news-feed-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/news-feed-app/tsconfig.app.json",
+              "projects/news-feed-app/tsconfig.spec.json",
+              "projects/news-feed-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/news-feed-app/e2e/protractor.conf.js",
+            "devServerTarget": "news-feed-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "news-feed-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "news-feed-app"
 }
