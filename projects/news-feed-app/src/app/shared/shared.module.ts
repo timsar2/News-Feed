@@ -1,7 +1,7 @@
 /**
  * 
  * Reducte boundel size By prevent making duplicate module
- * SharedModule just containe declarables (component, directive and pips) and do not import any service providers
+ * SharedModule just contains declarables (component, directive and pips) and do not import any service providers
  *
  */
 import { NgModule } from '@angular/core';

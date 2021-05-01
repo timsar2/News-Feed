@@ -1,4 +1,3 @@
-# NewsFeed
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
@@ -8,9 +7,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm i -g json-server`
 
-2- From the root folder for running fake REST API with custom middleware support(db.json is our fake database), Run:
+2- From the root folder, Run:
 
-`node server.js`
+`node server.js` for fake rest api. Navigate to `http://localhost:3000/` to see if it's running(db.json is our file database).
 
 3- To run the app from the root folder Run:
 

@@ -1,0 +1,50 @@
+{
+    "users": [
+        {
+            "id": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+            "userName": "mrg",
+            "fullName": "Mohammad Reza Golab"
+        }
+    ],
+    "userTokens": [
+        {
+            "id": "c400b57d",
+            "userId": "d700a66c-517d-4acb-ad92-8fc3f500096f"
+        }
+    ],
+    "likes": [
+        {
+            "id": "1",
+            "userId": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+            "newsId": "1"
+        }
+    ],
+    "favorite": [
+        {
+            "id": "1",
+            "userId": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+            "newsId": "1"
+        }
+    ],
+    "news": [
+        {
+            "id": "1",
+            "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+            "createdTime": 1619841468404,
+            "subject": "Good News",
+            "content": "The COVID‑19 vaccine was produced",
+            "imgUrl": "https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/vaccine_660_060520034904.jpg"
+        }
+    ],
+    "newsFeed": [
+        {
+            "id": "1",
+            "newsId": "1",
+            "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+            "createdTime": 1619841468404,
+            "fullName": "Good News",
+            "userActivity": 0,
+            "imgUrl": "https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/vaccine_660_060520034904.jpg"
+        }
+    ]
+}

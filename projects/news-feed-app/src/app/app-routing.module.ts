@@ -8,11 +8,11 @@ const routes: Routes = [{
   },
   {
     path: 'news-feed',
-    loadChildren: () => import('./features/news-feed/news-feed.module').then(m => m.NewsFeedModule)
+    loadChildren: () => import('./features/news-feed/components/news-feed.module').then(m => m.NewsFeedModule)
   },
   {
     path: 'users',
-    loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule)
+    loadChildren: () => import('./features/users/components/users.module').then(m => m.UsersModule)
   },
   {
     path: '**',

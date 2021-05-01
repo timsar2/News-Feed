@@ -37,3 +37,16 @@ $news-feed-app-theme: mat-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.item-menu { grid-area: menu; }
+.item-main { grid-area: main; }
+
+.grid-side-main {
+  display: grid;
+  grid-template-areas:
+    'menu main main main main main';
+  grid-gap: 10px;
+  padding: 10px;
+  width: 100vw;
+  height: 100vh;
+}
