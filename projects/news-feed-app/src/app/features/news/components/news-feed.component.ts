@@ -13,7 +13,7 @@ export class NewsFeedComponent implements OnInit {
 
   newsFeedList$: Observable<NewsFeed[]>;
   constructor(private store: Store<NewsState>) {
-    this.newsFeedList$ = this.store.select(store => {return store.newsFeed.list})
+    this.newsFeedList$ = this.store.select(store => store.newsFeed.list)
   }
 
   ngOnInit(): void {

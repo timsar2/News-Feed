@@ -1,4 +1,12 @@
 <div class="grid-side-main">
-    <div class="item-menu">side bar</div>
+    <div class="item-menu">
+      <ol class="rounded-list" *ngFor="let user of (userList$ | async)">
+        <li><a href="">{{user.fullName}}</a>
+          <ol>
+            <p>{{user.userName}}</p>
+          </ol>
+        </li>
+      </ol>
+    </div>
     <div class="item-main">main content</div>
-  </div>
+</div>
