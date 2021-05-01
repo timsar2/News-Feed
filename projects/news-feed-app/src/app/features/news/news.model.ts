@@ -1,7 +1,4 @@
-import { EntityState } from '@ngrx/entity';
-import { createFeatureSelector } from '@ngrx/store';
-
-export const NEWS_FEED_KEY = 'newsFeed';
+import { EntityState } from "@ngrx/entity";
 
 export enum UserActivity {
     CREATED_NEW_POST    = 'Posted A News',
@@ -28,15 +25,7 @@ export interface NewsFeed {
     imgUrl: string;
 }
 
-export interface NewsFeedState {
-    list: NewsFeed[],
-    loading: boolean,
-    error: Error
-}
-
 export interface NewsState {
-    readonly newsFeed: NewsFeedState
-}
-
-// export const selectNewsFeed = (state: NewsState) => state.newsFeed;
-// export const selectNewsFeed = createFeatureSelector<NewsState, NewsFeedState>(NEWS_FEED_KEY);
+    readonly newsFeed:   NewsFeed[],
+    readonly newsList:       News[];
+};

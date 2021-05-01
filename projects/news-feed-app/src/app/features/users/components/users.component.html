@@ -8,5 +8,13 @@
         </li>
       </ol>
     </div>
-    <div class="item-main">main content</div>
+    <div class="item-main">
+      <div class="card" title="{{news.createdTime}}" *ngFor="let news of (news$| async)">
+        <img [src]="news.imgUrl" alt="Avatar" class="card-img">
+        <div class="card-container">
+            <h4><b>{{news.subject}}</b></h4> 
+            <p>{{news.content}}</p> 
+        </div>
+    </div>
+    </div>
 </div>

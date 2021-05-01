@@ -4,8 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../../../shared/shared.module';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import { USER_LOAD } from './../user.mode';
-import { UserReducer } from './../user.reducer';
+import { FEATURE_NAME, reducers } from '../../../shared/store';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,7 @@ import { UserReducer } from './../user.reducer';
   imports: [
   SharedModule,
     UsersRoutingModule,
-    StoreModule.forFeature(USER_LOAD, UserReducer)
+    StoreModule.forFeature(FEATURE_NAME, reducers)
   ]
 })
 export class UsersModule { }

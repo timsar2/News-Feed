@@ -1,5 +1,3 @@
-export const USER_LOAD = 'userInfo';
-
 export interface UserInfo {
     id: string;
     userName: string;
@@ -18,12 +16,7 @@ export interface UserFavorite {
     newsId  : string;
 }
 
-export interface UserInfoState {
-    list: UserInfo[],
-    loading: boolean,
-    error: Error
-}
-
 export interface UserState {
-    readonly userInfo: UserInfoState
+    readonly userList: UserInfo[]
+    readonly selectedUser: UserInfo
 }

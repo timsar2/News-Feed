@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { NewsReducer } from '../news.reducer';
 import { NewsFeedRoutingModule } from './news-feed-routing.module';
 import { NewsFeedComponent } from './news-feed.component';
-import { NEWS_FEED_KEY } from './../news.model';
 import { NewsFacade } from './../news.facade';
+import { NewsReducer, NEWS_KEY } from '../../../shared/store/reducers/news.reducer';
+import { FEATURE_NAME, reducers } from '../../../shared/store';
 
 @NgModule({
   declarations: [
@@ -14,9 +14,9 @@ import { NewsFacade } from './../news.facade';
   ],
   imports: [
 
-  SharedModule,
-    StoreModule.forFeature(NEWS_FEED_KEY, NewsReducer),
-    StoreModule.forFeature('news', {newsFeed:  NewsReducer}),
+    SharedModule,
+    // StoreModule.forFeature({name: NEWS_KEY, reducer: NewsReducer}),
+    StoreModule.forFeature(FEATURE_NAME, reducers),
     NewsFeedRoutingModule
   ],
   providers:[ NewsFacade ]
