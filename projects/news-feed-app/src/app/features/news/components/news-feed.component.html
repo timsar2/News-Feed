@@ -1,6 +1,6 @@
 <div id="wrapper">
     <div id="wrapper">
-        <div class="card" title="{{newsFeed.createdTime}}" *ngFor="let newsFeed of (newsFeedList$ | async)">
+        <div class="card" title="{{newsFeed.createdTime}}" *ngFor="let newsFeed of (newsFacade.newsFeed$| async)">
             <img [src]="newsFeed.imgUrl" alt="Avatar" class="card-img">
             <div class="card-container">
                 <h4><b>{{newsFeed.fullName}}</b></h4> 

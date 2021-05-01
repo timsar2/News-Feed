@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { LoadNewsFeedAction } from '../news.action';
 import { NewsFeed, NewsFeedState, NewsState } from './../news.model';
+import { NewsFacade } from './../news.facade';
 
 @Component({
   selector: 'viktor-task-news-feed',
@@ -12,12 +13,11 @@ import { NewsFeed, NewsFeedState, NewsState } from './../news.model';
 export class NewsFeedComponent implements OnInit {
 
   newsFeedList$: Observable<NewsFeed[]>;
-  constructor(private store: Store<NewsState>) {
-    this.newsFeedList$ = this.store.select(store => store.newsFeed.list)
+  constructor(public newsFacade: NewsFacade) {
+    this.newsFeedList$ = this.newsFacade.getNewsFeed()
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new LoadNewsFeedAction)
   }
 
 }

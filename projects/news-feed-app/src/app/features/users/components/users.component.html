@@ -3,7 +3,7 @@
       <ol class="rounded-list" *ngFor="let user of (userList$ | async)">
         <li><a href="">{{user.fullName}}</a>
           <ol>
-            <p>{{user.userName}}</p>
+            <p>Username: {{user.userName}}</p>
           </ol>
         </li>
       </ol>
