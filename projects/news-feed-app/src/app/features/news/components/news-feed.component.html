@@ -1,0 +1,11 @@
+<div id="wrapper">
+    <div id="wrapper">
+        <div class="card" title="{{newsFeed.createdTime}}" *ngFor="let newsFeed of (newsFeedList$ | async)">
+            <img [src]="newsFeed.imgUrl" alt="Avatar" class="card-img">
+            <div class="card-container">
+                <h4><b>{{newsFeed.fullName}}</b></h4> 
+                <p>{{newsFeed.userActivity}}</p> 
+            </div>
+        </div>
+    </div>
+</div>
