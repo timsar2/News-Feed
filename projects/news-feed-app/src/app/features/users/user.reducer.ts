@@ -1,6 +1,6 @@
 import { createFeatureSelector } from "@ngrx/store";
 import { UserAction, UserType } from "./user.action";
-import { UserState } from "./user.mode";
+import { UserInfo, UserState } from "./user.mode";
 
 export const FEATURE_USER = 'userList';
 export const selectUsersFeature = createFeatureSelector<UserState, UserState>(
@@ -34,6 +34,8 @@ export function UserReducer(state: UserState = initialState, action: UserAction)
             return state;
         case UserType.SELECT_USER:
             return  {...state,selectedUser: state.userList.filter(o => o.id == action.payload)[0]};
+        case UserType.DESELECT_USER:
+            return  {...state,selectedUser: {} as UserInfo};
         default:
             return state;
     }

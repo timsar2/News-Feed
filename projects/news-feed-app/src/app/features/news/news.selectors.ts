@@ -10,7 +10,7 @@ export const selectNewsbyUser = createSelector(
     selectedUser,
     selectAllNews,
     (selectedUser: UserInfo, allNews: News[]) => {
-        if (selectedUser && allNews && selectedUser.id != '') {
+        if (selectedUser && allNews && selectedUser.id != undefined) {
             return allNews.filter((news: News) => news.createdBy === selectedUser.id);
         } else {
             return allNews;

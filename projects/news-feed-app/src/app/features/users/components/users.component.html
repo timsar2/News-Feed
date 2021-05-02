@@ -1,7 +1,10 @@
 <div class="grid-side-main">
     <div class="item-menu">
+      <div class="rounded-list">
+        <h2 (click)="deSelecteUser()">show all News</h2> 
+      </div>
       <ol class="rounded-list" *ngFor="let user of (userList$ | async)">
-        <li><a  (click)="selectUser(user.id)">{{user.fullName}}</a>
+        <li><a (click)="selectUser(user.id)">{{user.fullName}}</a>
           <ol>
             <p>Username: {{user.userName}}</p>
           </ol>

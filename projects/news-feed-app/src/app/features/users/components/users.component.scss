@@ -10,7 +10,7 @@ ol ol {
     margin: 0 0 0 2em; /* Add some left margin for inner lists */
 }
 
-.rounded-list a{
+.rounded-list a,h2{
     position: relative;
     display: block;
     padding: .4em .4em .4em 2em;
@@ -23,13 +23,20 @@ ol ol {
     transition: all .3s ease-out;
 }
 
-.rounded-list a:hover{
+.rounded-list a:hover, h2:hover{
     background: #eee;
 }
 
 .rounded-list a:before{
     content: counter(li);
     counter-increment: li;
+}
+
+.rounded-list h2:before{
+    content: " ";
+}
+
+.rounded-list a:before, h2:before{
     position: absolute;
     left: -1.3em;
     top: 50%;

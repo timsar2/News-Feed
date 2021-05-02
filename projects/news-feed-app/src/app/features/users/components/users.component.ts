@@ -4,9 +4,9 @@ import { UserInfo, UserState } from '../user.mode';
 import { Store, select } from '@ngrx/store';
 import { News } from '../../news/news.model';
 import { State } from '../../../shared/store';
-import { selectNewsbyUser } from '../../news/news.selectors';
+import { selectAllNews, selectNewsbyUser } from '../../news/news.selectors';
 import { selectAllUser } from '../user.selectors';
-import { LoadUserAction, SelectUser } from '../user.action';
+import { DeSelectUser, LoadUserAction, SelectUser } from '../user.action';
 
 @Component({
   selector: 'viktor-task-users',
@@ -25,6 +25,10 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new LoadUserAction);
+  }
+
+  deSelecteUser() {
+    this.store.dispatch(new DeSelectUser());
   }
 
   selectUser(userId: string) {
