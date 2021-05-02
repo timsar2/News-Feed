@@ -21,11 +21,7 @@ const initialState: UserState = {
             "fullName": "Mohammad Reza Golab"
         }
     ],
-    selectedUser: {
-        "id": "",
-        "userName": "",
-        "fullName": ""
-    }
+    selectedUser: {} as UserInfo
 }
 
 export function UserReducer(state: UserState = initialState, action: UserAction) {

@@ -1,4 +1,4 @@
-import { NewsAction, NewsFeedActionType } from "./news.action";
+import { NewsAction, NewsActionType } from "./news.action";
 import { NewsState, UserActivity } from "./news.model";
 
 
@@ -38,7 +38,9 @@ const initialState: NewsState = {
 
 export function NewsReducer(state: NewsState = initialState, action: NewsAction) {
     switch(action.type){
-        case NewsFeedActionType.LOAD_NEWS_FEED:
+        case NewsActionType.LOAD_NEWS:
+            return state
+        case NewsActionType.LOAD_NEWS_FEED:
             return state;
         default:
             return state

@@ -3,7 +3,7 @@
       <div class="rounded-list">
         <h2 (click)="deSelecteUser()">show all News</h2> 
       </div>
-      <ol class="rounded-list" *ngFor="let user of (userList$ | async)">
+      <ol class="rounded-list" *ngFor="let user of (userFacade.userList$| async)">
         <li><a (click)="selectUser(user.id)">{{user.fullName}}</a>
           <ol>
             <p>Username: {{user.userName}}</p>
@@ -12,7 +12,7 @@
       </ol>
     </div>
     <div class="item-main">
-      <div class="card" title="{{news.createdTime}}" *ngFor="let news of (news$| async)">
+      <div class="card" title="{{news.createdTime}}" *ngFor="let news of (newsFacade.news$| async)">
         <img [src]="news.imgUrl" alt="Avatar" class="card-img">
         <div class="card-container">
             <h4><b>{{news.subject}}</b></h4> 
