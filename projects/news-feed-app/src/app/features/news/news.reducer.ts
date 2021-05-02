@@ -1,5 +1,6 @@
-import { NewsState, UserActivity } from "../../../features/news/news.model";
-import { NewsAction, NewsFeedActionType } from "../action/news.action";
+import { NewsAction, NewsFeedActionType } from "./news.action";
+import { NewsState, UserActivity } from "./news.model";
+
 
 export const NEWS_KEY = 'news';
 
@@ -23,6 +24,14 @@ const initialState: NewsState = {
             "subject": "Good News",
             "content": "The COVID‑19 vaccine was produced",
             "imgUrl": "https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/vaccine_660_060520034904.jpg"
+        },
+        {
+            "id": "2",
+            "createdBy": "2",
+            "createdTime": '1619851468404',
+            "subject": "By Jamie Morris",
+            "content": "Angular State Management Using NgRx",
+            "imgUrl": "https://miro.medium.com/max/3840/1*Fz75ztQP5sud0w-HJraEXA.png"
         }
     ]
 }

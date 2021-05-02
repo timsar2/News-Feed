@@ -1,7 +1,7 @@
 <div class="grid-side-main">
     <div class="item-menu">
       <ol class="rounded-list" *ngFor="let user of (userList$ | async)">
-        <li><a href="">{{user.fullName}}</a>
+        <li><a  (click)="selectUser(user.id)">{{user.fullName}}</a>
           <ol>
             <p>Username: {{user.userName}}</p>
           </ol>

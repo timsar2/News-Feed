@@ -5,7 +5,6 @@ import { SharedModule } from '../../../shared/shared.module';
 import { NewsFeedRoutingModule } from './news-feed-routing.module';
 import { NewsFeedComponent } from './news-feed.component';
 import { NewsFacade } from './../news.facade';
-import { NewsReducer, NEWS_KEY } from '../../../shared/store/reducers/news.reducer';
 import { FEATURE_NAME, reducers } from '../../../shared/store';
 
 @NgModule({

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserInfo, UserState } from '../user.mode';
 import { Store, select } from '@ngrx/store';
-import { LoadUserAction } from '../../../shared/store/action/user.action';
 import { News } from '../../news/news.model';
-import { selectAllUser, selectNewsbyUser, State } from '../../../shared/store';
+import { State } from '../../../shared/store';
+import { selectNewsbyUser } from '../../news/news.selectors';
+import { selectAllUser } from '../user.selectors';
+import { LoadUserAction, SelectUser } from '../user.action';
 
 @Component({
   selector: 'viktor-task-users',
@@ -17,12 +19,15 @@ export class UsersComponent implements OnInit {
   news$: Observable<News[]>;
   constructor(private store: Store<State>) {
     this.userList$ = this.store.pipe(select(selectAllUser));
-    this.news$ = this.store.select(store => store.feature.news.newsList);
-    
+    // this.news$ = this.store.select(store => store.feature.news.newsList);
+    this.news$ = this.store.pipe(select(selectNewsbyUser));    
   }
 
   ngOnInit(): void {
     this.store.dispatch(new LoadUserAction);
   }
 
+  selectUser(userId: string) {
+    this.store.dispatch(new SelectUser(userId));
+  }
 }
