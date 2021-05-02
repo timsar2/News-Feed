@@ -23,4 +23,9 @@ export class UsersComponent implements OnInit {
   selectUser(userId: string) {
     this.userFacade.selectUser(userId);
   }
+
+  likeNews(event: any) {
+    event.target.classList.toggle('fa-heart');
+    event.target.classList.toggle('fa-heart-o');
+  }
 }

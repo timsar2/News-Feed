@@ -38,10 +38,42 @@ $news-feed-app-theme: mat-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+:root {
+  --color-danger: #ff0000;
+  --color-item-menu: #f8f8f8;
+  --color-gray: #ddd;
+  --color-gray-light: #eee;
+}
+
+.justify-content-end{
+  display: flex;
+  justify-content: flex-end;
+}
+
+i{
+  padding: 5px;
+}
+
+.fa {
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: var(--color-danger);
+}
+
+.fa-heart{
+  color: var(--color-danger);
+}
+
 .item-menu { 
   grid-area: menu;
-  background: #f8f8f8;
- }
+  background: var(--color-item-menu);
+}
+
 .item-main { grid-area: main; }
 
 .grid-side-main {

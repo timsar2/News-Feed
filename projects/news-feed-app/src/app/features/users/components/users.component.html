@@ -14,6 +14,9 @@
     <div class="item-main">
       <div class="card" title="{{news.createdTime}}" *ngFor="let news of (newsFacade.news$| async)">
         <img [src]="news.imgUrl" alt="Avatar" class="card-img">
+        <div class="justify-content-end">
+          <i #like (click)="likeNews($event)" class="fa-heart-o fa"></i>
+        </div>
         <div class="card-container">
             <h4><b>{{news.subject}}</b></h4> 
             <p>{{news.content}}</p> 

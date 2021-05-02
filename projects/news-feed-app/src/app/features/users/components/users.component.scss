@@ -16,7 +16,7 @@ ol ol {
     padding: .4em .4em .4em 2em;
     *padding: .4em;
     margin: .5em 0;
-    background: #ddd;
+    background: var(--color-gray);
     color: #444;
     text-decoration: none;
     border-radius: .3em;
@@ -24,7 +24,7 @@ ol ol {
 }
 
 .rounded-list a:hover, h2:hover{
-    background: #eee;
+    background: var(--color-gray-light);
 }
 
 .rounded-list a:before{
