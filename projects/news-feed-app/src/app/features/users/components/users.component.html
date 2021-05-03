@@ -4,9 +4,9 @@
         <h2 (click)="deSelecteUser()">show all News</h2> 
       </div>
       <ol class="rounded-list" *ngFor="let user of (userFacade.userList$| async)">
-        <li><a (click)="selectUser(user.id)">{{user.fullName}}</a>
+        <li><a (click)="selectUser(user.id)"><p>{{user.fullName}}</p></a>
           <ol>
-            <p>Username: {{user.userName}}</p>
+            <a (click)="loginAsDiffrentUser(user.userName)">DoLogin As: {{user.userName}}</a>
           </ol>
         </li>
       </ol>

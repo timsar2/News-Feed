@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { State } from "../../shared/store";
-import { DeSelectUser, LoadUserAction, SelectUser } from "./user.actions";
+import { DeSelectUser, LoadUsersAction, SelectUser } from "./user.actions";
 import { selectAllUser, selectedUser } from './user.selectors';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class UserFacade {
     constructor(private appState$: Store<State>) {}
 
     loadUsers() {
-        this.appState$.dispatch(new LoadUserAction);
+        this.appState$.dispatch(new LoadUsersAction);
     }
 
     selectUser(userId: string) {

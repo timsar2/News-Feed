@@ -7,6 +7,9 @@ import { UsersComponent } from './users.component';
 import { FEATURE_NAME, reducers } from '../../../shared/store';
 import { UserFacade } from './../user.facade';
 import { NewsFacade } from '../../news/news.facade';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from '../user.effects';
+import { UserApiClient } from './../userApiClient';
 
 @NgModule({
   declarations: [
@@ -15,8 +18,9 @@ import { NewsFacade } from '../../news/news.facade';
   imports: [
     SharedModule,
     UsersRoutingModule,
-    StoreModule.forFeature(FEATURE_NAME, reducers)
+    StoreModule.forFeature(FEATURE_NAME, reducers),
+    EffectsModule.forFeature([UserEffects]),
   ],
-  providers: [UserFacade, NewsFacade]
+  providers: [UserFacade, NewsFacade, UserApiClient]
 })
 export class UsersModule { }

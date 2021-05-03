@@ -1,6 +1,6 @@
 import {  ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
 import { AppState } from "../../core/core.state";
-import { News, NewsState } from "../../features/news/news.model";
+import { NewsState } from "../../features/news/news.model";
 import { NewsReducer } from "../../features/news/news.reducer";
 import {  UserState } from "../../features/users/user.mode";
 import { UserReducer } from "../../features/users/user.reducer";

@@ -26,6 +26,16 @@ server.get('/login/*', (req, res) => {
     }    
 })
 
+server.get('/getUsers', (req, res) => {
+    var users = getUsers(req);
+    if(users != ''){
+        res.jsonp(users)
+    }
+    else {
+        res.sendStatus(400)
+    }    
+})
+
 server.get('/tokens', (req, res) => {
     res.jsonp(req.query)
 })
@@ -70,6 +80,17 @@ function readToken(req){
     return user[0];
 }
 
+function getUsers(req){
+    var db = require('./db.json');
+
+    var userName = req.params['0'];
+    if (userName == '') { return '' };
+    
+    var users = db.users;
+
+    return Object.assign({list: users}, {selectedUser: {}});
+}
+
 function getLoginInfo(req){
     var db = require('./db.json');
 
@@ -84,7 +105,5 @@ function getLoginInfo(req){
 
     var likes = db.likes.filter(u => u.userId == user[0].id).map(elm => elm.newsId);
 
-    Object.assign(user[0],{'token': token[0]});
-    console.log(Object.assign({loginInfo: user[0]}, {userLike: likes}, {token: token[0]}));
-    return token[0];
+    return Object.assign({loginInfo: user[0]}, {userLike: likes}, {token: token[0]});
 }

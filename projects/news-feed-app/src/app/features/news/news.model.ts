@@ -1,5 +1,3 @@
-import { EntityState } from "@ngrx/entity";
-
 export enum UserActivity {
     CREATED_NEW_POST    = 'Posted A News',
     LIKED_POST          = 'Liked This News',

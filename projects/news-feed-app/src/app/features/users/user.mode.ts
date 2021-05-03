@@ -8,13 +8,11 @@ export interface UserLikes {
     news  : string[];
 }
 
-export interface UserFavorite {
-    id      : string;
-    userId  : string;
-    newsId  : string;
+export interface Users {
+    list: UserInfo[]
+    selectedUser: UserInfo
 }
 
 export interface UserState {
-    readonly userList: UserInfo[]
-    readonly selectedUser: UserInfo
+    readonly userList: Users;
 }

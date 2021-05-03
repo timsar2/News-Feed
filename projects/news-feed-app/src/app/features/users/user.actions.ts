@@ -1,22 +1,33 @@
 import { Action } from "@ngrx/store";
+import { Users } from './user.mode';
 
-export enum UserType {
-    LOAD_USER =     '[USER] Load Users',
-    SELECT_USER =   '[USER] Select Users',
-    DESELECT_USER =   '[USER] DESelect Users',
+export enum UserActionType {
+    LOAD_USERS          = '[USER] Load Users',
+    LOAD_USERS_SUCCESS  = '[USER] Load Users Success',
+    SELECT_USER         = '[USER] Select Users',
+    DESELECT_USER       = '[USER] DESelect Users',
 }
 
-export class LoadUserAction implements Action {
-    readonly type = UserType.LOAD_USER;
+export class LoadUsersAction implements Action {
+    readonly type = UserActionType.LOAD_USERS;
+}
+
+export class LoadUsersActionSuccess implements Action {
+    readonly type = UserActionType.LOAD_USERS_SUCCESS;
+    constructor(public payload: Users) {}
 }
 
 export class SelectUser implements Action {
-    readonly type = UserType.SELECT_USER
+    readonly type = UserActionType.SELECT_USER
     constructor(public payload: string) {}
 }
 
 export class DeSelectUser implements Action {
-    readonly type = UserType.DESELECT_USER
+    readonly type = UserActionType.DESELECT_USER
 }
 
-export type UserAction = LoadUserAction | SelectUser | DeSelectUser
+export type UserAction 
+= LoadUsersAction 
+| LoadUsersActionSuccess
+| SelectUser 
+| DeSelectUser

@@ -5,6 +5,7 @@ import { UserLikes } from '../user.mode';
 import { News } from '../../news/news.model';
 import { selectedUser } from '../user.selectors';
 import { filter, map } from 'rxjs/operators';
+import { AuthFacade } from './../../../core/auth/auth.facade';
 
 @Component({
   selector: 'viktor-task-users',
@@ -14,11 +15,19 @@ import { filter, map } from 'rxjs/operators';
 export class UsersComponent implements OnInit {
 
   userLike: UserLikes = {news:['1']};
-  constructor(public userFacade: UserFacade, public newsFacade: NewsFacade) {}
+  constructor(
+      public authFacade: AuthFacade,
+      public userFacade: UserFacade,
+      public newsFacade: NewsFacade
+    ) {}
 
   ngOnInit(): void {
     this.userFacade.loadUsers();
     this.newsFacade.loadNews();
+  }
+
+  loginAsDiffrentUser(userName: string){
+    this.authFacade.login(userName);
   }
 
   deSelecteUser() {

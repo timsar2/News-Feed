@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, Effect, ofType  } from "@ngrx/effects";
-import { Action, Store } from "@ngrx/store";
+import { Actions, createEffect, ofType  } from "@ngrx/effects";
 import { AuthApiClient } from "./authApiClient.service";
-import { AppState } from './../core.state';
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 import { AuthActionType, DoLoginAction, DoLoginFailAction, DoLoginSuccessAction } from "./auth.actions";
 import { catchError, map, mergeMap } from "rxjs/operators";
 
@@ -22,11 +20,9 @@ export class AuthEffects {
         return this.actions$.pipe(
             ofType<DoLoginAction>(AuthActionType.DO_LOGIN),
             mergeMap(
-            (data) => this.authApiClient.logging(data.payload)
+            (data) =>  this.authApiClient.logging(data.payload)
                 .pipe(
-                map(res => {
-                    return new DoLoginSuccessAction(res)
-                }),
+                map(res => new DoLoginSuccessAction(res)),
                 catchError(error => of(new DoLoginFailAction(error)))
                 )
             ),
