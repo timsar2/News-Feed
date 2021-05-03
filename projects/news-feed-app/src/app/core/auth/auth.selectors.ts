@@ -16,3 +16,8 @@ export const selectLoginInfo = createSelector(
     selectAuthState,
     (state: AuthState) => state.authInfo.loginInfo
 );
+
+export const selectAccessToken = createSelector(
+    selectAuthState,
+    (state: AuthState) => state.authInfo.token
+);

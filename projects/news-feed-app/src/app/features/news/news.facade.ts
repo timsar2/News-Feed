@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { select, Store } from '@ngrx/store';
 import { Observable } from "rxjs";
 import { selectNewsFeed, State } from "../../shared/store";
-import { LoadNews } from "./news.actions";
-import { NewsFeed } from "./news.model";
+import { NewsActionCreate, NewsLoadAction } from "./news.actions";
+import { News, NewsFeed } from "./news.model";
 import { selectNewsbyUser } from "./news.selectors";
 
 @Injectable()
@@ -15,10 +15,14 @@ export class NewsFacade {
     constructor(private appState$: Store<State>) {}
 
     loadNews(){
-        this.appState$.dispatch(new LoadNews);
+        this.appState$.dispatch(new NewsLoadAction);
     }
 
     getNewsFeed(): Observable<NewsFeed[]> {
         return this.appState$.select(store => store.feature.news.newsFeed)
+    }
+
+    createFakeNews(news: News){
+        this.appState$.dispatch(new NewsActionCreate(news))
     }
 }

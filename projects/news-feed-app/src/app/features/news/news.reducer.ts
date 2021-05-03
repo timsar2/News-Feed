@@ -42,6 +42,18 @@ export function NewsReducer(state: NewsState = initialState, action: NewsAction)
             return state
         case NewsActionType.LOAD_NEWS_FEED:
             return state;
+        case NewsActionType.CREATE_NEWS:
+            return {
+                ...state,
+                newsList: [...state.newsList, action.payload],
+                NewsFeed: [...state.newsFeed]
+            };
+        case NewsActionType.CREATE_NEWS_SUCCESS:
+            return {
+                ...state,
+                newsList: [...state.newsList, action.payload],
+                NewsFeed: [...state.newsFeed]
+            };
         default:
             return state
     }

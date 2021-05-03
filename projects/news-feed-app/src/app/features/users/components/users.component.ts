@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import * as faker from 'faker';
+
 import { UserFacade } from './../user.facade';
 import { NewsFacade } from './../../news/news.facade';
 import { UserLikes } from '../user.mode';
 import { News } from '../../news/news.model';
-import { selectedUser } from '../user.selectors';
-import { filter, map } from 'rxjs/operators';
 import { AuthFacade } from './../../../core/auth/auth.facade';
 
 @Component({
@@ -42,13 +42,19 @@ export class UsersComponent implements OnInit {
     
   }
 
-  // disLikeNews(event: any){
-  //   event.target.classList.toggle('fa-heart');
-  //   event.target.classList.toggle('fa-heart-o');
-  // }
-
   hasLiked(newsId: string): boolean{
     return Boolean(+ this.userLike.news.filter(o => o.includes(newsId)));    
+  }
+
+  CreateFakeNews() {
+    const news: any ={
+      id: faker.random.uuid(),
+      subject: faker.random.word(),
+      content: faker.random.words(),
+      imgUrl: faker.random.image(),
+    } as News
+
+    this.newsFacade.createFakeNews(news);
   }
 
   trackByNews(index: number, item: News): string {

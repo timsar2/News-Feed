@@ -4,13 +4,16 @@ import { delay, map, mergeMap } from "rxjs/operators";
 import { of } from "rxjs";
 import { environment } from "projects/news-feed-app/src/environments/environment";
 
-import { AuthInfo } from './auth.models';
+import { AuthInfo, AuthState } from './auth.models';
+import { select, Store } from "@ngrx/store";
+import { selectAccessToken } from "./auth.selectors";
+import { AppState } from "../core.state";
 
 @Injectable()
 export class AuthApiClient {
     private baseUrl = environment.APIEndpoint;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private appState$: Store<AppState>) { }
 
     logging(userName: string){
         return this.http.get<AuthInfo>(this.baseUrl + 'login/' + userName)
@@ -20,5 +23,12 @@ export class AuthApiClient {
                 //     return (data) 
                 // }) 
         )
+    }
+
+    getJwtToken(): string  {
+        let accessTokent = '';
+        this.appState$.pipe(select(selectAccessToken)).subscribe(
+            t => accessTokent =  t);
+        return accessTokent;
     }
 }
