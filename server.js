@@ -16,6 +16,16 @@ server.use((req, res, next) => {
 })
 
  // Add custom routes before JSON Server router
+server.get('/login/*', (req, res) => {
+    var loginInfo = getLoginInfo(req);
+    if(loginInfo != ''){
+        res.jsonp(loginInfo)
+    }
+    else {
+        res.sendStatus(400)
+    }    
+})
+
 server.get('/tokens', (req, res) => {
     res.jsonp(req.query)
 })
@@ -24,7 +34,6 @@ server.get('/tokens', (req, res) => {
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
 server.use((req, res, next) => {
-    console.log('body parser ' + user.id);
     if (req.method === 'POST') {
         req.body.createdAt = Date.now();
         // req.body.createdBy = user.id;
@@ -59,4 +68,23 @@ function readToken(req){
     if(userId.length == 0){ return '';}
     var user = db.users.filter(u => u.id == userId[0]);
     return user[0];
+}
+
+function getLoginInfo(req){
+    var db = require('./db.json');
+
+    var userName = req.params['0'];
+    if (userName == '') { return '' };
+    
+    var user = db.users.filter(u => u.userName == userName);
+    if(user.length == 0){ return '';}
+
+    var token = db.token.filter(u => u.userId == user[0].id).map(elm => elm.id);
+    if(token.length == 0){ return '';}
+
+    var likes = db.likes.filter(u => u.userId == user[0].id).map(elm => elm.newsId);
+
+    Object.assign(user[0],{'token': token[0]});
+    console.log(Object.assign({loginInfo: user[0]}, {userLike: likes}, {token: token[0]}));
+    return token[0];
 }

@@ -9,9 +9,9 @@ export class AuthApiClient {
     constructor(private http: HttpClient) { }
 
     logging(userName: string){
-        return this.http.get<AuthInfo>('login')
+        return this.http.get<AuthInfo>('login/' + userName)
             .pipe((data) =>
-            {console.log(data);debugger; return data;}
+            {console.log(data); return data;}
         )
     }
 }

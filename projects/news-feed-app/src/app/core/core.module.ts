@@ -11,23 +11,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule } from '@angular/common/http';
+
 import { environment } from '../../environments/environment';
 import { coreReducers } from './core.state';
 import { AuthFacade } from './auth/auth.facade';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthApiClient } from './auth/authApiClient.service';
-import { AppState } from './core.state';
-
-export {
-  // AppState
-}
+import { AuthEffects } from './auth/auth.effects';
 
 @NgModule({
   declarations: [
     MainLayoutComponent
   ],
   imports: [  
+
 
 
     BrowserModule,
@@ -37,6 +36,7 @@ export {
     
     // StoreModule.forRoot({}),
     StoreModule.forRoot(coreReducers),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     // material
     MatButtonModule,

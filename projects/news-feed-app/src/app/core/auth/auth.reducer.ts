@@ -9,7 +9,7 @@ export const initialState: AuthState = {
         userLike: {} as UserLikes,
         token: ''
     },
-    error: {} as Error//{message: '', name: '', stack: ''}
+    error: {} as Error  //{message: '', name: '', stack: ''}
 };
 
 export function AuthReducer(state: AuthState = initialState, action: AuthAction) {
@@ -23,6 +23,7 @@ export function AuthReducer(state: AuthState = initialState, action: AuthAction)
         case AuthActionType.DO_LOGIN_SUCCESS:
             return {...state, authInfo: action.payload};
         case AuthActionType.DO_LOGIN_FAIL:
+            console.log(action.payload);
             return {...state, error: action.payload as Error};
         case AuthActionType.DO_LOGOUT:
             return {...state, isAuthenticated: false};

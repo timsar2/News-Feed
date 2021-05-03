@@ -27,7 +27,7 @@ export class AuthEffects {
                 map(res => {
                     return new DoLoginSuccessAction(res)
                 }),
-                // catchError(error => of(new DoLoginFailAction(error)))
+                catchError(error => of(new DoLoginFailAction(error)))
                 )
             ),
         )
