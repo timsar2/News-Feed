@@ -1,6 +1,8 @@
 <mat-toolbar color="primary">
-    News App
+    News App, isAuthenticated: {{(isAuthenticated$ | async) ? 'true' : 'false'}}
 
+    <span class="spacer"></span>
+        Hello,  {{(loginInfo$ | async)?.fullName}}
     <span class="spacer"></span>
 
     <button mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>

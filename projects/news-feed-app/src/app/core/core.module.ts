@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
+import { coreReducers } from './core.state';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { environment } from '../../environments/environment';
     BrowserAnimationsModule,
     RouterModule,
 
-    StoreModule.forRoot({}),
+    // StoreModule.forRoot({}),
+    StoreModule.forRoot(coreReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     // material
     MatButtonModule,

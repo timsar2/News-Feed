@@ -1,5 +1,5 @@
 import { createFeatureSelector } from "@ngrx/store";
-import { UserAction, UserType } from "./user.action";
+import { UserAction, UserType } from "./user.actions";
 import { UserInfo, UserState } from "./user.mode";
 
 export const FEATURE_USER = 'userList';

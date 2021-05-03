@@ -7,12 +7,12 @@ export enum UserActivity {
 }
 
 export interface News {
-    id?          : string;
-    createdBy?   : string;
-    createdTime? : string;
-    subject     : string;
-    content     : string;
-    imgUrl      : string;
+    id              : string;
+    createdBy?      : string;
+    createdTime?    : string;
+    subject         : string;
+    content         : string;
+    imgUrl          : string;
 }
 
 export interface NewsFeed {

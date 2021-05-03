@@ -1,4 +1,4 @@
-import { NewsAction, NewsActionType } from "./news.action";
+import { NewsAction, NewsActionType } from "./news.actions";
 import { NewsState, UserActivity } from "./news.model";
 
 

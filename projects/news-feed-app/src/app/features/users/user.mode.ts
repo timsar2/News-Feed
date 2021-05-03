@@ -5,9 +5,7 @@ export interface UserInfo {
 }
 
 export interface UserLikes {
-    id      : string;
-    userId  : string;
-    newsId  : string;
+    news  : string[];
 }
 
 export interface UserFavorite {
