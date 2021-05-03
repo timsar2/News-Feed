@@ -8,5 +8,6 @@ export interface AuthInfo {
 }
 
 export interface AuthState {
-    authInfo: AuthInfo
+    authInfo: AuthInfo,
+    error: Error
 }

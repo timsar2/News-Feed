@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { selectIsAuthenticated } from '../../auth/auth.selectors';
-import { Observable } from 'rxjs';
-import { AppState } from '../../core.state';
-import { AuthLogin } from '../../auth/auth.actions';
 import { AuthInfo } from '../../auth/auth.models';
-import { UserInfo, UserLikes } from '../../../features/users/user.mode';
-import { selectLoginInfo } from './../../auth/auth.selectors';
+import { AuthFacade } from './../../auth/auth.facade';
 
 @Component({
   selector: 'viktor-task-main-layout',
@@ -14,13 +8,8 @@ import { selectLoginInfo } from './../../auth/auth.selectors';
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent implements OnInit {
-  isAuthenticated$: Observable<boolean>;
-  loginInfo$: Observable<UserInfo>;
 
-  constructor(private store: Store<AppState>) { 
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-    this.loginInfo$ = this.store.pipe(select(selectLoginInfo));
-  }
+  constructor(public authFacade: AuthFacade) {}
 
   ngOnInit(): void {
     const authInfo = {
@@ -34,8 +23,8 @@ export class MainLayoutComponent implements OnInit {
         news: ['1']
       },
       token: 'c400b57d'
-  } as AuthInfo
-    this.store.dispatch(new AuthLogin(authInfo))
+    } as AuthInfo;
+    this.authFacade.login("mrg");
   }
 
 }

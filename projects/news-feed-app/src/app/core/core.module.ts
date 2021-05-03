@@ -14,16 +14,27 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { coreReducers } from './core.state';
+import { AuthFacade } from './auth/auth.facade';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthApiClient } from './auth/authApiClient.service';
+import { AppState } from './core.state';
+
+export {
+  // AppState
+}
 
 @NgModule({
   declarations: [
     MainLayoutComponent
   ],
-  imports: [
+  imports: [  
+
+
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-
+    HttpClientModule,
+    
     // StoreModule.forRoot({}),
     StoreModule.forRoot(coreReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
@@ -33,6 +44,7 @@ import { coreReducers } from './core.state';
   ],
   exports:[
     MainLayoutComponent
-  ]
+  ],
+  providers: [AuthFacade, AuthApiClient]
 })
 export class CoreModule { }

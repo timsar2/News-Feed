@@ -2,17 +2,39 @@ import { Action } from '@ngrx/store';
 import { AuthInfo } from './auth.models';
 
 export enum AuthActionType {
-    AUTH_LOGIN = '[AUTH] Auth Login',
-    AUTH_LOGOUT = '[AUTH] Auth Logout'
+    DO_LOGIN            ='[Auth] Do Login',
+    DO_LOGIN_SUCCESS    ='[Auth] Do Login Success',
+    DO_LOGIN_FAIL       ='[Auth] Do Login Fail',
+    DO_LOGOUT            ='[Auth] Do Logout',
+    DO_LOGOUT_SUCCESS    ='[Auth] Do Logout Success',
+    DO_LOGOUT_FAIL       ='[Auth] Do Logout Fail'
 }
 
-export class AuthLogin implements Action {
-    readonly type = AuthActionType.AUTH_LOGIN
-    constructor(public payload: AuthInfo) {}
+export class DoLoginAction implements Action {
+    readonly type = AuthActionType.DO_LOGIN
+    constructor(public payload: string) {}
 }
 
-export class AuthLogout implements Action {
-    readonly type = AuthActionType.AUTH_LOGOUT
+export class DoLoginSuccessAction implements Action {
+    type = AuthActionType.DO_LOGIN_SUCCESS;
+
+    constructor(public payload: AuthInfo) { }
 }
 
-export type AuthAction = AuthLogin | AuthLogout
+export class DoLoginFailAction implements Action {
+    readonly type = AuthActionType.DO_LOGIN_FAIL
+    constructor(public payload: Error) {}
+}
+
+/**
+ * Logout Actions
+ */
+export class DoLogoutAction implements Action {
+    readonly type = AuthActionType.DO_LOGOUT
+}
+
+export type AuthAction 
+= DoLoginAction 
+| DoLoginSuccessAction 
+| DoLoginFailAction
+| DoLogoutAction
