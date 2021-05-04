@@ -14,9 +14,9 @@ export class UserEffects {
     ) {}
 
     /**
-     * Login effect
+     * Load Users effect
      */
-    doLogin$ = createEffect(() => {
+    loadUsers$ = createEffect(() => {
         return this.actions$.pipe(
             ofType<LoadUsersAction>(UserActionType.LOAD_USERS),
             mergeMap(

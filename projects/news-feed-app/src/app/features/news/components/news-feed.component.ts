@@ -12,6 +12,7 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.newsFacade.loadNewsFeed();
   }
 
 }

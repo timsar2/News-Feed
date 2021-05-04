@@ -15,7 +15,7 @@ export class UserApiClient {
     loadUsers(){
         return this.http.get<Users>(this.baseUrl + 'getUsers')
             .pipe( 
-                //do somthing like delay
+                //do somthing like delay(500)
             )
     }
 }
