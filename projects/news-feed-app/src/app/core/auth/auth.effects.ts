@@ -22,7 +22,10 @@ export class AuthEffects {
             mergeMap(
             (data) =>  this.authApiClient.logging(data.payload)
                 .pipe(
-                map(res => new DoLoginSuccessAction(res)),
+            map(res => {
+                res.isAuthenticated = true;                 //* set true of authorization status of current user
+                return new DoLoginSuccessAction(res)
+            }),
                 catchError(error => of(new DoLoginFailAction(error)))
                 )
             ),

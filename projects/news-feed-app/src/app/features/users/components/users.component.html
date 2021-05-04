@@ -2,9 +2,9 @@
     <div class="item-menu">
       <div class="rounded-list">
         <div>
-          <button (click)="CreateFakeNews()">Create Fake News</button>
-        </div>
-        <h2 (click)="deSelecteUser()">show all News</h2> 
+          <h3 *ngIf="authFacade.isAuthenticated$ | async" (click)="CreateFakeNews()">Create Fake News</h3>
+          <h3 (click)="deSelecteUser()">Show All News</h3>
+        </div> 
       </div>
       <ol class="rounded-list" *ngFor="let user of (userFacade.userList$| async)">
         <li><a (click)="selectUser(user.id)"><p>{{user.fullName}}</p></a>

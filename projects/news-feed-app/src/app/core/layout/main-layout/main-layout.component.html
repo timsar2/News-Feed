@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
-    News App, isAuthenticated: {{(authFacade.isAuthenticated$ | async) ? 'true' : 'false'}}
+    <button [hidden]="!(authFacade.isAuthenticated$ | async)" (click)="logout()">logout</button>
 
     <span class="spacer"></span>
-        Hello,  {{(authFacade.loginInfo$ | async)?.fullName}}
+        {{(authFacade.isAuthenticated$ | async) ? 'Hello, ' : 'News Feed App'}}
+        {{(authFacade.loginInfo$ | async)?.fullName}}
     <span class="spacer"></span>
 
-    <button mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
+    <button *ngIf="authFacade.isAuthenticated$ | async" mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
     <button mat-flat-button color="primary" routerLink="users" routerLinkActive="active">Users</button>
 </mat-toolbar>
 

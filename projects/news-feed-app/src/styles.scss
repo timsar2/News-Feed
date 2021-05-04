@@ -105,3 +105,60 @@ i{
 .card-container {
   padding: 2px 16px;
 }
+
+
+// ----------------------------------------------------- side menu -----------------------------------------------------//
+ol {
+
+  font: 15px 'trebuchet MS', 'lucida sans';
+  padding: 0;
+  margin-bottom: 4em;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol ol {
+  margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.rounded-list a,h3{
+  position: relative;
+  display: block;
+  padding: .4em .4em .4em 2em;
+  *padding: .4em;
+  margin: .5em 0;
+  background: var(--color-gray);
+  color: #444;
+  text-decoration: none;
+  border-radius: .3em;
+  transition: all .3s ease-out;
+}
+
+.rounded-list a:hover, h3:hover{
+  background: var(--color-gray-light);
+}
+
+.rounded-list a:before{
+  content: counter(li);
+  counter-increment: li;
+}
+
+.rounded-list h3:before{
+  content: " ";
+}
+
+.rounded-list a:before, h3:before{
+  position: absolute;
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: #87ceeb;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: .3em solid #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all .3s ease-out;
+}
+// -------------------------------------------------^^^^ side menu ^^^^-------------------------------------------------//

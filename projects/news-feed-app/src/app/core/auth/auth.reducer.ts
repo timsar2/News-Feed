@@ -23,10 +23,9 @@ export function AuthReducer(state: AuthState = initialState, action: AuthAction)
         case AuthActionType.DO_LOGIN_SUCCESS:
             return {...state, authInfo: action.payload};
         case AuthActionType.DO_LOGIN_FAIL:
-            console.log(action.payload);
             return {...state, error: action.payload as Error};
         case AuthActionType.DO_LOGOUT:
-            return {...state, isAuthenticated: false};
+            return {...state, authInfo: {} as AuthInfo};
         default:
             return state
     }

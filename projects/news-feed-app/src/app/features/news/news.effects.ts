@@ -55,12 +55,12 @@ export class NewsEffects {
         return this.actions$.pipe(
             ofType<NewsCreateAction>(NewsActionType.CREATE_NEWS),
             mergeMap(
-            (data) =>  this.newsApiClient.createNews(data.payload)
+            (data) =>  {debugger; return this.newsApiClient.createNews(data.payload)
                 .pipe(
                 map(res => new NewsCreateActionSuccess(res)
                 ),
                 // catchError(error => of(new LoadUsersActionFail(error)))
-                )
+                )}
             ),
         )
     });

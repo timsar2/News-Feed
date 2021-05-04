@@ -116,6 +116,38 @@
       "imgUrl": "http://placeimg.com/640/480/business",
       "createBy": "b776a06c-517c-4acb-ad42-8fc3f500042e",
       "createdTime": "2021-05-04T10:24:18.154Z"
+    },
+    {
+      "id": "db5a9de9-35d5-488a-a19a-52b79d0b43d6",
+      "subject": "JBOD",
+      "content": "hub",
+      "imgUrl": "http://placeimg.com/640/480/animals",
+      "createBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "createdTime": "2021-05-04T11:43:07.004Z"
+    },
+    {
+      "id": "ed1b8831-add7-4df1-b645-908947bc3fca",
+      "subject": "Borders",
+      "content": "Georgia Developer",
+      "imgUrl": "http://placeimg.com/640/480/city",
+      "createBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "createdTime": "2021-05-04T11:43:09.301Z"
+    },
+    {
+      "id": "39fbeec7-218f-4709-b347-f35268713021",
+      "subject": "Small",
+      "content": "e-services architecture",
+      "imgUrl": "http://placeimg.com/640/480/technics",
+      "createBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "createdTime": "2021-05-04T11:43:10.278Z"
+    },
+    {
+      "id": "ce718f9a-4153-4ab5-be32-dd4564213170",
+      "subject": "value-added",
+      "content": "client-driven",
+      "imgUrl": "http://placeimg.com/640/480/technics",
+      "createBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "createdTime": "2021-05-04T12:11:40.880Z"
     }
   ],
   "newsFeed": [
@@ -189,6 +221,42 @@
       "createdTime": "2021-05-04T10:24:18.154Z",
       "createdBy": "b776a06c-517c-4acb-ad42-8fc3f500042e",
       "fullName": "Ali UpKey",
+      "userActivity": "Posted A News"
+    },
+    {
+      "id": "83e62cea-9392-4d3e-a238-06c8af8df9ef",
+      "newsId": "db5a9de9-35d5-488a-a19a-52b79d0b43d6",
+      "imgUrl": "http://placeimg.com/640/480/animals",
+      "createdTime": "2021-05-04T11:43:07.004Z",
+      "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "fullName": "Mohammad Reza Golab",
+      "userActivity": "Posted A News"
+    },
+    {
+      "id": "14900454-141b-4112-b22f-b838e8f0880f",
+      "newsId": "ed1b8831-add7-4df1-b645-908947bc3fca",
+      "imgUrl": "http://placeimg.com/640/480/city",
+      "createdTime": "2021-05-04T11:43:09.301Z",
+      "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "fullName": "Mohammad Reza Golab",
+      "userActivity": "Posted A News"
+    },
+    {
+      "id": "66d97dd3-fdd1-4c62-bdba-d295a411874e",
+      "newsId": "39fbeec7-218f-4709-b347-f35268713021",
+      "imgUrl": "http://placeimg.com/640/480/technics",
+      "createdTime": "2021-05-04T11:43:10.278Z",
+      "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "fullName": "Mohammad Reza Golab",
+      "userActivity": "Posted A News"
+    },
+    {
+      "id": "b85f4095-ecb9-4151-acb2-c3e27e4b94f7",
+      "newsId": "ce718f9a-4153-4ab5-be32-dd4564213170",
+      "imgUrl": "http://placeimg.com/640/480/technics",
+      "createdTime": "2021-05-04T12:11:40.880Z",
+      "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
+      "fullName": "Mohammad Reza Golab",
       "userActivity": "Posted A News"
     }
   ]

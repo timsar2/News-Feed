@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
 
   CreateFakeNews() {
     const news: any ={
-      id: faker.random.uuid(),
+      id: '',
       subject: faker.random.word(),
       content: faker.random.words(),
       imgUrl: faker.random.image(),

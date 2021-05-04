@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { select, Store } from '@ngrx/store';
-import { Observable } from "rxjs";
 import { selectNewsFeed, State } from "../../shared/store";
 import { NewsCreateAction, NewsFeedLoadAction, NewsLoadAction } from "./news.actions";
 import { News, NewsFeed } from "./news.model";

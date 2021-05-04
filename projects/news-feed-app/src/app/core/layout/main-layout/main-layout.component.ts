@@ -11,6 +11,10 @@ export class MainLayoutComponent implements OnInit {
   constructor(public authFacade: AuthFacade) {}
 
   ngOnInit(): void {
-    this.authFacade.login('mrg');
+    this.authFacade.login('viktor');
+  }
+
+  logout() {
+    this.authFacade.logOut();
   }
 }
