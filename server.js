@@ -19,7 +19,7 @@ server.use((req, res, next) => {
 server.get('/login/*', (req, res) => {
     var loginInfo = getLoginInfo(req);
     if(loginInfo != ''){
-        res.jsonp(loginInfo)
+        res.send(loginInfo);
     }
     else {
         res.sendStatus(400)
@@ -36,12 +36,6 @@ server.get('/getUsers', (req, res) => {
     }    
 })
 
-server.get('/tokens', (req, res) => {
-    res.jsonp(req.query)
-})
-
-server.get('/news', (req, res) => {
-})
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
