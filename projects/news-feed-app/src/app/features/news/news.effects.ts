@@ -23,8 +23,7 @@ export class NewsEffects {
             mergeMap(
             () =>  this.newsApiClient.loadNews()
                 .pipe(
-                map(res => new NewsLoadSuccessAction(res)
-                ),
+                map(res => new NewsLoadSuccessAction(res)),
                 // catchError(error => of(new LoadUsersActionFail(error)))
                 )
             ),
@@ -40,8 +39,7 @@ export class NewsEffects {
             mergeMap(
             () =>  this.newsApiClient.loadNewsFeed()
                 .pipe(
-                map(res => new NewsFeedLoadSuccessAction(res)
-                ),
+                map(res => new NewsFeedLoadSuccessAction(res)),
                 // catchError(error => of(new LoadUsersActionFail(error)))
                 )
             ),
@@ -55,12 +53,12 @@ export class NewsEffects {
         return this.actions$.pipe(
             ofType<NewsCreateAction>(NewsActionType.CREATE_NEWS),
             mergeMap(
-            (data) =>  {debugger; return this.newsApiClient.createNews(data.payload)
+            (data) => this.newsApiClient.createNews(data.payload)
                 .pipe(
                 map(res => new NewsCreateActionSuccess(res)
                 ),
                 // catchError(error => of(new LoadUsersActionFail(error)))
-                )}
+                )
             ),
         )
     });

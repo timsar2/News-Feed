@@ -15,17 +15,8 @@ export const selectedUsersFeature = createFeatureSelector<UserState, UserState>(
 const initialState: UserState = {
     userList:{
         list: [
-            {
-                "id": "d700a66c-517d-4acb-ad92-8fc3f500096f",
-                "userName": "mrg",
-                "fullName": "Mohammad Reza Golab"
-            }
         ],
-        selectedUser: {
-            "id": "",
-            "userName": "",
-            "fullName": ""
-        } as UserInfo
+        selectedUser: {} as UserInfo
     }
 }
 
@@ -49,6 +40,7 @@ export function UserReducer(state: UserState = initialState, action: UserAction)
                     selectedUser: {} as UserInfo 
                 }
             };
+            
         default:
             return state;
     }

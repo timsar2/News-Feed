@@ -74,7 +74,10 @@ i{
   background: var(--color-item-menu);
 }
 
-.item-main { grid-area: main; }
+.item-main { 
+  grid-area: main;
+  display: grid;
+ }
 
 .grid-side-main {
   display: grid;
@@ -89,8 +92,10 @@ i{
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 40%;
+  justify-self: center;
+  width: 60%;
   border-radius: 5px;
+  margin: 7px;
 }
 
 .card:hover {

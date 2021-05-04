@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { AppState } from "../core.state";
 import { selectIsAuthenticated, selectLoginInfo } from "./auth.selectors";
-import { DoLoginAction, DoLogoutAction } from "./auth.actions";
+import { DoLikeAction, DoLoginAction, DoLogoutAction } from "./auth.actions";
 
 @Injectable()
 export class AuthFacade {
@@ -17,5 +17,10 @@ export class AuthFacade {
 
     logOut() {
         this.appState$.dispatch(new DoLogoutAction());
+    }
+
+
+    doLikeNews(newsId: string){
+        this.appState$.dispatch(new DoLikeAction(newsId))
     }
 }

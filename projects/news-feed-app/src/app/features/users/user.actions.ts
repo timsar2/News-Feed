@@ -2,10 +2,10 @@ import { Action } from "@ngrx/store";
 import { Users } from './user.mode';
 
 export enum UserActionType {
-    LOAD_USERS          = '[USER] Load Users',
-    LOAD_USERS_SUCCESS  = '[USER] Load Users Success',
-    SELECT_USER         = '[USER] Select Users',
-    DESELECT_USER       = '[USER] DESelect Users',
+    LOAD_USERS              = '[USER] Load Users',
+    LOAD_USERS_SUCCESS      = '[USER] Load Users Success',
+    SELECT_USER             = '[USER] Select Users',
+    DESELECT_USER           = '[USER] DESelect Users',    
 }
 
 export class LoadUsersAction implements Action {

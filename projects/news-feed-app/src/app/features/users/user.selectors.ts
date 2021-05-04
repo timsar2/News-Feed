@@ -8,3 +8,5 @@ export const selectAllUser = createSelector(
 );
 
 export const selectedUser = (state: State) => state.feature.users.userList.selectedUser;
+
+export const selectedUserNewsLikes = (state: State) => state.auth.authInfo.userLike.news;

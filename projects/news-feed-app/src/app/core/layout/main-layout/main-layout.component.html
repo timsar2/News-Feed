@@ -6,7 +6,7 @@
         {{(authFacade.loginInfo$ | async)?.fullName}}
     <span class="spacer"></span>
 
-    <button *ngIf="authFacade.isAuthenticated$ | async" mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
+    <button mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
     <button mat-flat-button color="primary" routerLink="users" routerLinkActive="active">Users</button>
 </mat-toolbar>
 

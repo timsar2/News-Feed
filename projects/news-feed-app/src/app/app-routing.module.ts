@@ -11,11 +11,11 @@ const routes: Routes = [{
   {
     path: 'news-feed',
     loadChildren: () => import('./features/news/components/news-feed.module').then(m => m.NewsFeedModule),
-    canActivate: [AuthGurdService]
   },
   {
     path: 'users',
     loadChildren: () => import('./features/users/components/users.module').then(m => m.UsersModule),
+    // canActivate: [AuthGurdService]
   },
     { path: 'login', loadChildren: () => import('./core/auth/login/login.module').then(m => m.LoginModule) },
   {

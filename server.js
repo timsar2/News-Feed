@@ -1,4 +1,5 @@
 // server.js
+const { date, database } = require('faker');
 const jsonServer = require('json-server');
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
@@ -15,6 +16,10 @@ server.use((req, res, next) => {
     }
 })
 
+// To handle POST, PUT and PATCH you need to use a body-parser
+// You can use the one used by JSON Server
+server.use(jsonServer.bodyParser)
+
  // Add custom routes before JSON Server router
 server.get('/login/*', (req, res) => {
     var loginInfo = getLoginInfo(req);
@@ -25,6 +30,51 @@ server.get('/login/*', (req, res) => {
         res.sendStatus(400)
     }    
 })
+
+// server.post('/likes', (req, res) => {
+    server.use((req, res, next) =>{
+        if(req.url == '/likes' && req.method === 'POST') {
+            postLike(req, res)
+            
+        }    
+        next()    
+})
+function postLike(req, res){
+    user = getUserFromToken(req);
+        if(user == '') { res.sendStatus(400) }
+        var newsId = req.body.newsId;
+        var imgUrl = getNewsImgUrl(newsId);
+        if (imgUrl == '' || imgUrl == undefined) { res.sendStatus(400) }
+        var createdTime = new Date().toJSON();
+        
+        var likes = {
+            "id": uuidv4(),
+            "userId": user.id,
+            "newsId": newsId
+        }
+
+        db = router.db;
+
+        var obj = db.get('likes').filter(o => o.userId == user.id && o.newsId == newsId).map(x => x.id);
+        var ids = JSON.parse(JSON.stringify(obj));
+
+        if(ids.length > 0){
+            db.get('likes').removeById(ids[0]).value();
+            // res.setHeader("Content-Type", "application/json");
+            newsId = '0';
+        }else {
+            // Add a like
+            db.get('likes')
+            .push(likes)
+            .write();
+            createNewsFeed(newsId, imgUrl, user, createdTime, "Liked This News");
+            // res.setHeader("Content-Type", "application/json");            
+        }
+        res.jsonp({
+            newsId
+        })
+        
+}
 
 server.get('/getUsers', (req, res) => {
     var users = getUsers(req);
@@ -37,9 +87,8 @@ server.get('/getUsers', (req, res) => {
 })
 
 
-// To handle POST, PUT and PATCH you need to use a body-parser
-// You can use the one used by JSON Server
-server.use(jsonServer.bodyParser)
+
+
 server.use((req, res, next) => {
     var user;
     if (req.method === 'POST') {
@@ -48,17 +97,31 @@ server.use((req, res, next) => {
     }
 
     if(req.url == '/news' && req.method == 'POST'){
-            req.body.id = uuidv4();
-            req.body.createBy = user.id;
-            req.body.createdTime = new Date().toJSON();
             
-            createNewsFeed(req, user, "Posted A News");
+            var newsId = uuidv4() + date.now;
+            var createdTime = new Date().toJSON();
+            req.body.id = newsId
+            req.body.createBy = user.id;
+            req.body.createdTime = createdTime;
+            // var news = {
+            //     id: newsId,
+            //     createdBy: user.id,
+            //     createdTime: createdTime,
+            //     subject: req.body.subject,
+            //     content: req.body.content,
+            //     imgUrl: req.body.imgUrl
+            // }
+            // var db = router.db;
+            // //** post news */
+            // db.get('news')
+            // .push(news)
+            // .write();
+            createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
+            // router.render = function (req, res) {
+            //     res.jsonp(news);
+            // };
     }
 
-    if(req.url == '/likes' && req.method === 'POST'){
-        req.body.userId = user.id;
-    } 
-    
     // Continue to JSON Server router
     next()
 })
@@ -82,13 +145,19 @@ function isAuthorized(req){
     return true;
 }
 
-function createNewsFeed(req, user, userActivity){
-    var db2 = require('./db.json');
+function getNewsImgUrl(newsId){
+    db = require('./db.json');
+    var imgUrl = db.news.filter(o => o.id == newsId).map(x => x.imgUrl);
+    return imgUrl[0];
+}
+
+function createNewsFeed(newsId, imgUrl, user, createdTime, userActivity){
+    
     var newsFeed = {
-        "id": uuidv4(),
-        "newsId": req.body.id,
-        "imgUrl": req.body.imgUrl,
-        "createdTime": req.body.createdTime,
+        "id": uuidv4() + database.now,
+        "newsId": newsId,
+        "imgUrl": imgUrl,
+        "createdTime": createdTime,
         "createdBy": user.id,
         "fullName": user.fullName,
         "userActivity": userActivity
@@ -106,6 +175,7 @@ function createNewsFeed(req, user, userActivity){
 function getUserFromToken(req){
     var token = req.header("Authorization").replace('Bearer ', '');
     var db = require('./db.json');
+    
     var userId = db.token.filter(u => u.id == token).map(elm => elm.userId);
     if(userId.length == 0){ return '';}
     var user = db.users.filter(u => u.id == userId[0]);
@@ -126,7 +196,7 @@ function getUsers(req){
 
 function getLoginInfo(req){
     var db = require('./db.json');
-
+    
     var userName = req.params['0'];
     if (userName == '') { return '' };
     
@@ -137,8 +207,8 @@ function getLoginInfo(req){
     if(token.length == 0){ return '';}
 
     var likes = db.likes.filter(u => u.userId == user[0].id).map(elm => elm.newsId);
-
-    return Object.assign({loginInfo: user[0]}, {userLike: likes}, {token: token[0]});
+    
+    return Object.assign({loginInfo: user[0]}, {userLike: {news: likes}}, {token: token[0]});
 }
 
 function uuidv4() {

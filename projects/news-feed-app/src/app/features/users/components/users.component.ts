@@ -6,6 +6,7 @@ import { NewsFacade } from './../../news/news.facade';
 import { UserLikes } from '../user.mode';
 import { News } from '../../news/news.model';
 import { AuthFacade } from './../../../core/auth/auth.facade';
+import { filter, first, take } from 'rxjs/operators';
 
 @Component({
   selector: 'viktor-task-users',
@@ -39,11 +40,19 @@ export class UsersComponent implements OnInit {
   }
 
   likeNews(newsId: string) {
-    
+    this.authFacade.doLikeNews(newsId);
   }
 
-  hasLiked(newsId: string): boolean{
-    return Boolean(+ this.userLike.news.filter(o => o.includes(newsId)));    
+  hasLiked(newsId: string): boolean{    
+    let tt = false;
+    this.userFacade.userNewsLikes$.subscribe(
+      o => {tt= o.includes(newsId) ? true : false}
+      
+      );
+      console.log(newsId + ' ' +tt);
+      return tt;
+    //.filter(o => o.includes(newsId)
+    //return Boolean(+ this.userLike.news.filter(o => o.includes(newsId)));    
   }
 
   CreateFakeNews() {
