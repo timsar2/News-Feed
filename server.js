@@ -4,7 +4,7 @@ const jsonServer = require('json-server');
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
-var user = "";
+
 server.use(middlewares)
 server.use((req, res, next) => {
     if (isAuthorized(req)) { // add your authorization logic here
@@ -31,50 +31,42 @@ server.get('/login/*', (req, res) => {
     }    
 })
 
-// server.post('/likes', (req, res) => {
-    server.use((req, res, next) =>{
-        if(req.url == '/likes' && req.method === 'POST') {
-            postLike(req, res)
-            
-        }    
-        next()    
+server.post('/likes', (req, res) => {
+
+    if(req.method != 'POST') { return }
+    
+    var user = getUserFromToken(req);
+    if(user == '') { res.sendStatus(400) }
+    var newsId = req.body.newsId;
+    var imgUrl = getNewsImgUrl(newsId);
+    if (imgUrl == '' || imgUrl == undefined) { res.sendStatus(400) }
+    var createdTime = new Date().toJSON();
+    
+    var likes = {
+        "id": uuidv4(),
+        "userId": user.id,
+        "newsId": newsId
+    }
+
+    db = router.db;
+
+    var obj = db.get('likes').filter(o => o.userId == user.id && o.newsId == newsId).map(x => x.id);
+    var ids = JSON.parse(JSON.stringify(obj));
+
+    if(ids.length > 0){
+        db.get('likes').removeById(ids[0]).value();
+        // res.setHeader("Content-Type", "application/json");
+        newsId = '0';
+    }else {
+        // Add a like
+        db.get('likes')
+        .push(likes)
+        .write();
+        createNewsFeed(newsId, imgUrl, user, createdTime, "Liked This News");
+        // res.setHeader("Content-Type", "application/json");            
+    }
+    return res.jsonp({ newsId })        
 })
-function postLike(req, res){
-    user = getUserFromToken(req);
-        if(user == '') { res.sendStatus(400) }
-        var newsId = req.body.newsId;
-        var imgUrl = getNewsImgUrl(newsId);
-        if (imgUrl == '' || imgUrl == undefined) { res.sendStatus(400) }
-        var createdTime = new Date().toJSON();
-        
-        var likes = {
-            "id": uuidv4(),
-            "userId": user.id,
-            "newsId": newsId
-        }
-
-        db = router.db;
-
-        var obj = db.get('likes').filter(o => o.userId == user.id && o.newsId == newsId).map(x => x.id);
-        var ids = JSON.parse(JSON.stringify(obj));
-
-        if(ids.length > 0){
-            db.get('likes').removeById(ids[0]).value();
-            // res.setHeader("Content-Type", "application/json");
-            newsId = '0';
-        }else {
-            // Add a like
-            db.get('likes')
-            .push(likes)
-            .write();
-            createNewsFeed(newsId, imgUrl, user, createdTime, "Liked This News");
-            // res.setHeader("Content-Type", "application/json");            
-        }
-        res.jsonp({
-            newsId
-        })
-        
-}
 
 server.get('/getUsers', (req, res) => {
     var users = getUsers(req);
@@ -86,45 +78,67 @@ server.get('/getUsers', (req, res) => {
     }    
 })
 
-
-
-
-server.use((req, res, next) => {
-    var user;
-    if (req.method === 'POST') {
+server.post('/news', (req, res) => {
+        var user;
         user = getUserFromToken(req);
         if(user == '') { res.sendStatus(400) }
-    }
-
-    if(req.url == '/news' && req.method == 'POST'){
-            
-            var newsId = uuidv4() + date.now;
-            var createdTime = new Date().toJSON();
-            req.body.id = newsId
-            req.body.createBy = user.id;
-            req.body.createdTime = createdTime;
-            // var news = {
-            //     id: newsId,
-            //     createdBy: user.id,
-            //     createdTime: createdTime,
-            //     subject: req.body.subject,
-            //     content: req.body.content,
-            //     imgUrl: req.body.imgUrl
-            // }
-            // var db = router.db;
-            // //** post news */
-            // db.get('news')
-            // .push(news)
-            // .write();
-            createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
-            // router.render = function (req, res) {
-            //     res.jsonp(news);
-            // };
-    }
-
-    // Continue to JSON Server router
-    next()
+        var newsId = uuidv4() + date.now;
+        var createdTime = new Date().toJSON();
+        req.body.id = newsId
+        req.body.createBy = user.id;
+        req.body.createdTime = createdTime;
+        // var news = {
+        //     id: newsId,
+        //     createdBy: user.id,
+        //     createdTime: createdTime,
+        //     subject: req.body.subject,
+        //     content: req.body.content,
+        //     imgUrl: req.body.imgUrl
+        // }
+        // var db = router.db;
+        // //** post news */
+        // db.get('news')
+        // .push(news)
+        // .write();
+        createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
+        // router.render = function (req, res) {
+        //     res.jsonp(news);
+        // };
 })
+
+
+// server.use((req, res, next) => {    
+//     if(req.url == '/news' && req.method == 'POST'){
+//         var user;
+//         user = getUserFromToken(req);
+//         if(user == '') { res.sendStatus(400) }
+//         var newsId = uuidv4() + date.now;
+//         var createdTime = new Date().toJSON();
+//         req.body.id = newsId
+//         req.body.createBy = user.id;
+//         req.body.createdTime = createdTime;
+//         // var news = {
+//         //     id: newsId,
+//         //     createdBy: user.id,
+//         //     createdTime: createdTime,
+//         //     subject: req.body.subject,
+//         //     content: req.body.content,
+//         //     imgUrl: req.body.imgUrl
+//         // }
+//         // var db = router.db;
+//         // //** post news */
+//         // db.get('news')
+//         // .push(news)
+//         // .write();
+//         createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
+//         // router.render = function (req, res) {
+//         //     res.jsonp(news);
+//         // };
+//     }
+
+//     // Continue to JSON Server router
+//     next()
+// })
 
 
 server.use(router)

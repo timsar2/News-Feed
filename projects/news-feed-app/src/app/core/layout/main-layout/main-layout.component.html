@@ -1,14 +1,14 @@
-<mat-toolbar color="primary">
-    <button [hidden]="!(authFacade.isAuthenticated$ | async)" (click)="logout()">logout</button>
+<div class="toolbar-main">        
+    <button mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
+    <button mat-flat-button color="primary" routerLink="users" routerLinkActive="active">Users</button>
 
     <span class="spacer"></span>
-        {{(authFacade.isAuthenticated$ | async) ? 'Hello, ' : 'News Feed App'}}
+    {{(authFacade.isAuthenticated$ | async) ? 'Hello, ' : 'News Feed App'}}
         {{(authFacade.loginInfo$ | async)?.fullName}}
     <span class="spacer"></span>
 
-    <button mat-flat-button color="primary" routerLink="news-feed" routerLinkActive="active">NewsFeed</button>
-    <button mat-flat-button color="primary" routerLink="users" routerLinkActive="active">Users</button>
-</mat-toolbar>
+    <button [hidden]="!(authFacade.isAuthenticated$ | async)" (click)="logout()">logout</button>    
+</div>
 
 <main>
     <router-outlet></router-outlet>

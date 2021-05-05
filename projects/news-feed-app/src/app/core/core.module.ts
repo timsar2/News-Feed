@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
@@ -39,9 +38,9 @@ import { TokenInterceptor } from './auth/token.interceptor';
     StoreModule.forRoot(coreReducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    
     // material
-    MatButtonModule,
-    MatToolbarModule
+    MatButtonModule
   ],
   exports:[
     MainLayoutComponent
