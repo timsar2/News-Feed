@@ -100,19 +100,6 @@ i {
   height: 100vh;
 }
 
-.toolbar-main {
-  background-color: var(--color-primary);
-  color: var(--color-gray-bright);
-  font-size: 18px;
-  height: 64px;
-  align-items: center;
-  display: flex;
-  top: 0;
-  /* bottom: 0; */
-  position: fixed;
-  width: 100%;
-}
-
 button {
   margin: 0 10px;
   &.active {
@@ -125,6 +112,7 @@ button {
   transition: 0.3s;
   justify-self: center;
   width: 40%;
+  max-height: 460px;
   border-radius: 5px;
   margin: 7px;
 }
@@ -135,6 +123,7 @@ button {
 
 .card-img {
   width: 100%;
+  max-height: 300px;
   border-radius: 5px 5px 0 0;
 }
 

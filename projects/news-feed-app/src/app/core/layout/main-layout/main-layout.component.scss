@@ -2,3 +2,15 @@ main {
     padding: 65px 0px 35px 11px;
 }
 
+.toolbar-main {
+    background-color: var(--color-primary);
+    color: var(--color-gray-bright);
+    font-size: 18px;
+    height: 64px;
+    align-items: center;
+    display: flex;
+    top: 0;
+    /* bottom: 0; */
+    position: fixed;
+    width: 100%;
+}

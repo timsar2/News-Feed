@@ -6,25 +6,21 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
-server.use((req, res, next) => {
-    if (isAuthorized(req)) { // add your authorization logic here
-        // user = getUserFromToken(req);
-        // if(user == '') { return res.sendStatus(401);}
-        next() // continue to JSON Server router
-    } else {
-        res.sendStatus(401)
-    }
-})
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
 
- // Add custom routes before JSON Server router
+// ----------------------------------------------- custom route -----------------------------------------------------------//
+// Add custom routes before JSON Server router
+server.use('/getUsers', (req, res) => {
+    getUsersRoute(req, res);
+})
+
 server.get('/login/*', (req, res) => {
     var loginInfo = getLoginInfo(req);
     if(loginInfo != ''){
-        res.send(loginInfo);
+        res.status(200).send(loginInfo);
     }
     else {
         res.sendStatus(400)
@@ -32,7 +28,6 @@ server.get('/login/*', (req, res) => {
 })
 
 server.post('/likes', (req, res) => {
-
     if(req.method != 'POST') { return }
     
     var user = getUserFromToken(req);
@@ -65,54 +60,63 @@ server.post('/likes', (req, res) => {
         createNewsFeed(newsId, imgUrl, user, createdTime, "Liked This News");
         // res.setHeader("Content-Type", "application/json");            
     }
-    return res.jsonp({ newsId })        
-})
-
-server.get('/getUsers', (req, res) => {
-    var users = getUsers(req);
-    if(users != ''){
-        res.jsonp(users)
-    }
-    else {
-        res.sendStatus(400)
-    }    
+    return res.status(200).jsonp({ newsId })        
 })
 
 server.post('/news', (req, res) => {
         var user;
         user = getUserFromToken(req);
         if(user == '') { res.sendStatus(400) }
-        var newsId = uuidv4() + date.now;
+        var newsId = uuidv4() + Date.now();
         var createdTime = new Date().toJSON();
-        req.body.id = newsId
-        req.body.createBy = user.id;
-        req.body.createdTime = createdTime;
-        // var news = {
-        //     id: newsId,
-        //     createdBy: user.id,
-        //     createdTime: createdTime,
-        //     subject: req.body.subject,
-        //     content: req.body.content,
-        //     imgUrl: req.body.imgUrl
-        // }
-        // var db = router.db;
-        // //** post news */
-        // db.get('news')
-        // .push(news)
-        // .write();
+        // req.body.id = newsId
+        // req.body.createBy = user.id;
+        // req.body.createdTime = createdTime;
+        var news = {
+            id: newsId,
+            createdBy: user.id,
+            createdTime: createdTime,
+            subject: req.body.subject,
+            content: req.body.content,
+            imgUrl: req.body.imgUrl
+        }
+        var db = router.db;
+        //** post news */
+        db.get('news')
+        .push(news)
+        .write();
         createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
-        // router.render = function (req, res) {
-        //     res.jsonp(news);
-        // };
+        return res.status(200).jsonp(news);
 })
+// ----------------------------------------------^^^^ custom route ^^^^-------------------------------------------------------------//
 
+// server.use((req, res, next) => {
+//     console.log('second');
+//     if (isAuthorized(req)) { // add your authorization logic here
+//         // user = getUserFromToken(req);
+//         // if(user == '') { return res.sendStatus(401);}
+//         next() // continue to JSON Server router
+//     } else {
+//         return res.sendStatus(401)
+//     }
+// })
+server.use(router)
 
+function getUsersRoute(req, res){
+    var users = getUsers(req);
+    if(users != ''){
+        res.status(200).jsonp(users)
+    }
+    else {
+        res.sendStatus(400)
+    }
+}
 // server.use((req, res, next) => {    
 //     if(req.url == '/news' && req.method == 'POST'){
 //         var user;
 //         user = getUserFromToken(req);
 //         if(user == '') { res.sendStatus(400) }
-//         var newsId = uuidv4() + date.now;
+//         var newsId = uuidv4() + Date.now();
 //         var createdTime = new Date().toJSON();
 //         req.body.id = newsId
 //         req.body.createBy = user.id;
@@ -141,7 +145,7 @@ server.post('/news', (req, res) => {
 // })
 
 
-server.use(router)
+
 
 // router.render = (req, res) => {
 //   res.jsonp({
