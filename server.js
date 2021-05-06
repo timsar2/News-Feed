@@ -57,7 +57,7 @@ server.post('/likes', (req, res) => {
         newsId = '0';
     }else {        
         // Add a like
-        db.get('likes').push(likes).write();     // commit changed
+        db.get('likes').unshift(likes).write();     // commit changed
         createNewsFeed(newsId, imgUrl, user, createdTime, "Liked This News"); 
     }
     
@@ -84,7 +84,7 @@ server.post('/news', (req, res) => {
                         
         //** post news */
         db.get('news')
-        .push(news)
+        .unshift(news)
         .write();
 
         createNewsFeed(newsId, req.body.imgUrl, user, createdTime, "Posted A News");
@@ -144,7 +144,7 @@ function createNewsFeed(newsId, imgUrl, user, createdTime, userActivity){
 
     // Add a post
     db.get('newsFeed')
-    .push(newsFeed)
+    .unshift(newsFeed)
     .write()
 
 }
@@ -166,7 +166,6 @@ function getUserFromToken(req){
 function getUsers(req){
     var db = require('./db.json');
     var users = db.users;
-
     return Object.assign({list: users}, {selectedUser: {}});
 }
 

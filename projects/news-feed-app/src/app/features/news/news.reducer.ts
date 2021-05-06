@@ -37,7 +37,7 @@ export function NewsReducer(state: NewsState = initialState, action: NewsAction)
         case NewsActionType.CREATE_NEWS_SUCCESS:
             return {
                 ...state,
-                newsList: [...state.newsList, action.payload],
+                newsList: [action.payload, ...state.newsList],
                 NewsFeed: [...state.newsFeed]
             };
 
