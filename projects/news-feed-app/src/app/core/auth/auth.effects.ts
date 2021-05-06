@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType  } from "@ngrx/effects";
 import { AuthApiClient } from "./authApiClient.service";
-import { of } from "rxjs";
-import { AuthActionType, DoLikeAction, DoLikeSuccessAction, DoLoginAction, DoLoginFailAction, DoLoginSuccessAction, RemoveLikeAction } from "./auth.actions";
-import { catchError, map, mergeMap } from "rxjs/operators";
+import { AuthActionType, DoLikeAction, DoLikeSuccessAction, DoLoginAction, DoLoginSuccessAction, RemoveLikeAction } from "./auth.actions";
+import { map, mergeMap } from "rxjs/operators";
 
 @Injectable()
 export class AuthEffects {

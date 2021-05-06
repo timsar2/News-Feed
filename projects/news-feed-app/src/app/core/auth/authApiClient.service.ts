@@ -34,14 +34,7 @@ export class AuthApiClient {
     }
 
     doLikeNews(newsId: string){
-        const news = {
-            "id": "1",
-            "createdBy": "d700a66c-517d-4acb-ad92-8fc3f500096f",
-            "createdTime": '1619841468404',
-            "subject": "Good News",
-            "content": "The COVID‑19 vaccine was produced",
-            "imgUrl": "https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/vaccine_660_060520034904.jpg"
-        } as News
+        console.log('fromApi: ', newsId);
         return this.http.post<{newsId: string}>(this.baseUrl + 'likes', {newsId}).pipe();
     }
 }

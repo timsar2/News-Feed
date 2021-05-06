@@ -19,8 +19,8 @@
         <img [src]="news.imgUrl" alt="Avatar" class="card-img">
         <div *ngIf="authFacade.isAuthenticated$ | async" class="justify-content-end">
           <container-element [ngSwitch]="hasLiked(news.id) | async">
-            <i *ngSwitchCase="false" (click)="likeNews(news.id)" class="fa fa-heart-o"></i>
-            <i *ngSwitchDefault (click)="likeNews(news.id)" class="fa fa-heart"></i>
+            <i *ngSwitchCase="false" (click)="doLikeNews(news.id)" class="fa fa-heart-o"></i>
+            <i *ngSwitchDefault (click)="doLikeNews(news.id)" class="fa fa-heart"></i>
           </container-element>
         </div>
         <div class="card-container">

@@ -5,9 +5,8 @@ import { UserFacade } from './../user.facade';
 import { NewsFacade } from './../../news/news.facade';
 import { UserLikes } from '../user.mode';
 import { News } from '../../news/news.model';
-import { AuthFacade } from './../../../core/auth/auth.facade';
-import { filter, first, take } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { AuthFacade } from './../../../core/auth/auth.facade'
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -41,7 +40,8 @@ export class UsersComponent implements OnInit {
     this.userFacade.selectUser(userId);
   }
 
-  likeNews(newsId: string) {
+  doLikeNews(newsId: string) {
+    console.log('fromApi: ', newsId);
     this.authFacade.doLikeNews(newsId);
   }
 
