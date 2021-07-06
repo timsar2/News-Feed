@@ -7,9 +7,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm i -g json-server`
 
-`npm install`
-
 2- From the root folder, Run:
+
+`npm install`
 
 `node server.js` for fake rest api. Navigate to `http://localhost:3000/` to see if it's running(db.json is our file database).
 
