@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1- install json-server full fake REST API globaly:
 
 `npm i -g json-server`
-and other packages
+
 `npm install`
 
 2- From the root folder, Run:
