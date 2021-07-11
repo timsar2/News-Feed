@@ -11,7 +11,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `npm install`
 
-`node server.js` for fake rest api. Navigate to `http://localhost:3000/` to see if it's running(db.json is our file database).
+`node server.js`
+
+for fake rest api. Navigate to `http://localhost:3000/` to see if it's running(db.json is our file database).
 
 3- To run the app from the root folder Run:
 
