@@ -17,4 +17,6 @@ for fake rest api. Navigate to `http://localhost:3000/` to see if it's running(d
 
 3- To run the app from the root folder Run:
 
-`ng serve -o` for a dev server. Navigate to `http://localhost:4200/`
+`ng serve -o`
+
+for a dev server. Navigate to `http://localhost:4200/`
